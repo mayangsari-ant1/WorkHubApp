@@ -63,5 +63,10 @@ public class RuangKerja {
     public void aturanPenggunaan() {
         System.out.println("-> Aturan Umum: Dilarang merokok dan wajib menjaga kebersihan ruangan.");
     }
+    
+    // MODUL 6: METHOD UNTUK DYNAMIC BINDING / RUNTIME POLYMORPHISM
+    public void simulasiAturan() {
+    System.out.println("-> [Simulasi Aturan Umum]: Seluruh pengguna wajib mematuhi jam operasional WorkHub.");
+    }
 }
     

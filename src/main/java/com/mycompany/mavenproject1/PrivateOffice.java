@@ -36,4 +36,10 @@ public class PrivateOffice extends RuangKerja {
     public void aturanPenggunaan() {
         System.out.println("-> Fasilitas: Akses keycard privat 24/7 dan mencakup meja kerja dedicated.");
     }
+    
+    // MODUL 6: OVERRIDING METHOD SIMULASI ATURAN
+    @Override
+    public void simulasiAturan() {
+        System.out.println("-> [Simulasi Private Office]: Akses kartu kunci 24/7, Wi-Fi dedicated, dan penerimaan surat.");
+    }
 }

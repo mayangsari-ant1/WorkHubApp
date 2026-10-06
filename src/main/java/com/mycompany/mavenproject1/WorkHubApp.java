@@ -42,6 +42,11 @@ public class WorkHubApp {
             System.out.println("Tidak ada ruangan dengan harga di bawah Rp" + maxHarga);
         }
     }
+    
+    // MODUL 6: DYNAMIC BINDING & RUNTIME POLYMORPHISM (Parameter Tipe Superclass)
+    public static void eksekusiSimulasi(RuangKerja r) {
+        r.simulasiAturan();
+    }
 
     // MODUL 2: MAIN METHOD (Entry Point Program)
     public static void main(String[] args) {
@@ -55,6 +60,8 @@ public class WorkHubApp {
             daftarRuangan[jumlahRuangan++] = new PrivateOffice("Startup Pod B", "PO-02", 200000, 8);
             daftarRuangan[jumlahRuangan++] = new MeetingRoom("Boardroom Alpha", "MR-01", 150000, 12);
             daftarRuangan[jumlahRuangan++] = new MeetingRoom("Auditorium Mini", "MR-02", 350000, 30);
+            // MODUL 6: Instansiasi Objek Subclass 3 (Polimorfisme Array)
+            daftarRuangan[jumlahRuangan++] = new EventSpace("Grand Hall WorkHub", "ES-01", 750000, true);
 
             boolean isRunning = true;
 
@@ -81,7 +88,8 @@ public class WorkHubApp {
                             System.out.println("\n-- PILIH TIPE RUANG KERJA --");
                             System.out.println("1. Private Office");
                             System.out.println("2. Meeting Room");
-                            System.out.print("Pilihan Tipe (1/2): ");
+                            System.out.println("3. Event Space"); // MODUL 6: Opsi Subclass 3
+                            System.out.print("Pilihan Tipe (1/2/3): ");
                             int tipe = scanner.nextInt();
                             scanner.nextLine();
 
@@ -112,6 +120,16 @@ public class WorkHubApp {
                                 daftarRuangan[jumlahRuangan] = new MeetingRoom(nama, kode, harga, kap);
                                 jumlahRuangan++;
                                 System.out.println("-> [SUKSES] Data Meeting Room Berhasil Ditambahkan!");
+                                
+                            } else if (tipe == 3) {
+                                System.out.print("Apakah Ada Sound System? (true/false): ");
+                                boolean sound = scanner.nextBoolean();
+                                scanner.nextLine();
+
+                                // MODUL 6: Instansiasi Objek Subclass 3
+                                daftarRuangan[jumlahRuangan] = new EventSpace(nama, kode, harga, sound);
+                                jumlahRuangan++;
+                                System.out.println("-> [SUKSES] Data Event Space Berhasil Ditambahkan!");
                             } else {
                                 System.out.println("Tipe tidak valid! Penambahan dibatalkan.");
                             }
@@ -134,6 +152,10 @@ public class WorkHubApp {
                                 // MODUL 5: Memanggil Method Overriding
                                 daftarRuangan[i].tampilkanInfo();
                                 daftarRuangan[i].aturanPenggunaan();
+                                
+                                // MODUL 6: Memanggil Dynamic Binding / Runtime Polymorphism
+                                eksekusiSimulasi(daftarRuangan[i]);
+                                
                                 System.out.println();
                             }
                             // MODUL 4: PEMANGGILAN VARIABEL STATIC

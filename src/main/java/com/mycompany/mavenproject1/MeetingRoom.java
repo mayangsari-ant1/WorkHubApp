@@ -36,4 +36,10 @@ public class MeetingRoom extends RuangKerja {
     public void aturanPenggunaan() {
         System.out.println("-> Fasilitas: Dilengkapi proyektor 4K, smart TV, dan sound system perapatan.");
     }
+    
+    // MODUL 6: OVERRIDING METHOD SIMULASI ATURAN
+    @Override
+    public void simulasiAturan() {
+        System.out.println("-> [Simulasi Meeting Room]: Wajib reservasi H-1 jam, dilengkapi Proyektor 4K & Whiteboard.");
+    }
 }
