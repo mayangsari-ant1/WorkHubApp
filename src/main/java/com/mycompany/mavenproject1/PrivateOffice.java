@@ -4,8 +4,8 @@
  */
 package com.mycompany.mavenproject1;
 
-// MODUL 5: INHERITANCE (Subclass 1 menggunakan 'extends')
-public class PrivateOffice extends RuangKerja {
+// MODUL 5, 6 & 7: MULTIPLE INTERFACE IMPLEMENTATION
+public class PrivateOffice extends RuangKerja implements DapatDisewa, DapatDinilai {
     // MODUL 4: Encapsulation
     private int jumlahMeja;
     
@@ -41,5 +41,20 @@ public class PrivateOffice extends RuangKerja {
     @Override
     public void simulasiAturan() {
         System.out.println("-> [Simulasi Private Office]: Akses kartu kunci 24/7, Wi-Fi dedicated, dan penerimaan surat.");
+    }
+    // MODUL 7: OVERRIDING ABSTRACT METHOD DARI SUPERCLASS
+    @Override
+    public void hitungDendaKeterlambatan() {
+        System.out.println("-> Aturan Denda: Rp 50.000 / jam overstay penggunaan office.");
+    }
+    // MODUL 7: OVERRIDING METHOD DARI INTERFACE DapatDisewa
+    @Override
+    public void prosesPenyewaanFisik() {
+        System.out.println("-> [PROSES SEWA] Penyewa menandatangani kontrak bulanan & menerima smart keycard.");
+    }
+    // MODUL 7: OVERRIDING METHOD DARI INTERFACE DapatDinilai
+    @Override
+    public void beriRating(int bintang) {
+        System.out.println("-> [ULASAN SEWA] Private Office ini mendapat rating " + bintang + "/5 Bintang dari tenant.");
     }
 }

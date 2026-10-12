@@ -156,6 +156,20 @@ public class WorkHubApp {
                                 // MODUL 6: Memanggil Dynamic Binding / Runtime Polymorphism
                                 eksekusiSimulasi(daftarRuangan[i]);
                                 
+                                // MODUL 7: MEMANGGIL ABSTRACT METHOD DARI SUPERCLASS
+                                daftarRuangan[i].hitungDendaKeterlambatan();
+
+                                // MODUL 7: PENGECEKAN INTERFACE DENGAN operator 'instanceof' & DOWNCASTING
+                                if (daftarRuangan[i] instanceof DapatDisewa) {
+                                    DapatDisewa itemSewa = (DapatDisewa) daftarRuangan[i];
+                                    itemSewa.prosesPenyewaanFisik();
+                                }
+
+                                if (daftarRuangan[i] instanceof DapatDinilai) {
+                                    DapatDinilai itemRating = (DapatDinilai) daftarRuangan[i];
+                                    itemRating.beriRating(5);
+                                }
+                                
                                 System.out.println();
                             }
                             // MODUL 4: PEMANGGILAN VARIABEL STATIC

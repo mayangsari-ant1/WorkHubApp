@@ -4,8 +4,8 @@
  */
 package com.mycompany.mavenproject1;
 
-// MODUL 5: INHERITANCE (Subclass 2 menggunakan 'extends')
-public class MeetingRoom extends RuangKerja {
+// MODUL 5, 6 & 7: IMPLEMENTS INTERFACE DapatDisewa
+public class MeetingRoom extends RuangKerja implements DapatDisewa {
     // MODUL 4: Encapsulation
     private int kapasitasProyektor; 
 
@@ -41,5 +41,17 @@ public class MeetingRoom extends RuangKerja {
     @Override
     public void simulasiAturan() {
         System.out.println("-> [Simulasi Meeting Room]: Wajib reservasi H-1 jam, dilengkapi Proyektor 4K & Whiteboard.");
+    }
+    
+    // MODUL 7: OVERRIDING ABSTRACT METHOD DARI SUPERCLASS
+    @Override
+    public void hitungDendaKeterlambatan() {
+        System.out.println("-> Aturan Denda: Rp 25.000 / 15 menit keterlambatan pengosongan ruangan.");
+    }
+
+    // MODUL 7: OVERRIDING METHOD DARI INTERFACE DapatDisewa
+    @Override
+    public void prosesPenyewaanFisik() {
+        System.out.println("-> [PROSES SEWA] Pengguna melakukan verifikasi booking CLI & aktivasi proyektor di kasir.");
     }
 }

@@ -4,8 +4,8 @@
  */
 package com.mycompany.mavenproject1;
 
-// MODUL 5: INHERITANCE (Superclass Utama)
-public class RuangKerja {
+// MODUL 5, 6 & 7: ABSTRACT CLASS (Tidak dapat di-instansiasi langsung)
+public abstract class RuangKerja {
     // MODUL 4: ENCAPSULATION & ACCESS MODIFIER
     // Field di-private untuk melindungi data internal
     private String namaRuangan;
@@ -68,5 +68,7 @@ public class RuangKerja {
     public void simulasiAturan() {
     System.out.println("-> [Simulasi Aturan Umum]: Seluruh pengguna wajib mematuhi jam operasional WorkHub.");
     }
+    // MODUL 7: ABSTRACT METHOD (Tanpa body {})
+    public abstract void hitungDendaKeterlambatan();
 }
     

@@ -4,8 +4,8 @@
  */
 package com.mycompany.mavenproject1;
 
-// MODUL 6: SUBCLASS BARU (EventSpace)
-public class EventSpace extends RuangKerja {
+// MODUL 6 & 7: IMPLEMENTS INTERFACE DapatDinilai
+public class EventSpace extends RuangKerja implements DapatDinilai {
     private boolean adaSoundSystem;
 
     public EventSpace(String namaRuangan, String kodeRuang, double hargaSewaPerJam, boolean adaSoundSystem) {
@@ -36,5 +36,17 @@ public class EventSpace extends RuangKerja {
     @Override
     public void simulasiAturan() {
         System.out.println("-> [Simulasi Event Space]: Acara maksimal hingga pukul 22.00 WIB, wajib DP 50% H-3 acara.");
+    }
+    
+    // MODUL 7: OVERRIDING ABSTRACT METHOD DARI SUPERCLASS
+    @Override
+    public void hitungDendaKeterlambatan() {
+        System.out.println("-> Aturan Denda: Tidak ada denda jam, pemotongan deposit 20% jika melebihi jam operasional.");
+    }
+
+    // MODUL 7: OVERRIDING METHOD DARI INTERFACE DapatDinilai
+    @Override
+    public void beriRating(int bintang) {
+        System.out.println("-> [ULASAN EVENT] Event Space ini mendapat rating " + bintang + "/5 Bintang dari penyelenggara.");
     }
 }
