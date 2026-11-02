@@ -15,15 +15,17 @@ public abstract class RuangKerja {
     // MODUL 4: KEYWORD STATIC
     public static int totalRuanganDibuat = 0;
 
-    // MODUL 3 & 4: CONSTRUCTOR & KEYWORD 'THIS'
-    public RuangKerja(String namaRuangan, String kodeRuang, double hargaSewaPerJam) {
+    // MODUL 9: CONSTRUCTOR MENGGUNAKAN 'throws Exception' & 'throw' UNTUK VALIDASI
+    public RuangKerja(String namaRuangan, String kodeRuang, double hargaSewaPerJam) throws Exception {
+        if (hargaSewaPerJam <= 0) {
+            throw new Exception("Harga sewa per jam harus lebih besar dari 0!");
+        }
         this.namaRuangan = namaRuangan;
         this.kodeRuang = kodeRuang;
         this.hargaSewaPerJam = hargaSewaPerJam;
         
         totalRuanganDibuat++;
     }
-
     // MODUL 4: GETTER & SETTER (dengan Validasi Data)
     public String getNamaRuangan() {
         return this.namaRuangan;

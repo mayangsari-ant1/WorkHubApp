@@ -9,9 +9,12 @@ public class PrivateOffice extends RuangKerja implements DapatDisewa, DapatDinil
     // MODUL 4: Encapsulation
     private int jumlahMeja;
     
-    // MODUL 5: KEYWORD SUPER pada Constructor Subclass
-    public PrivateOffice(String namaRuangan, String kodeRuang, double hargaSewaPerJam, int jumlahMeja) {
-        super(namaRuangan, kodeRuang, hargaSewaPerJam); // Memanggil constructor Superclass
+    // MODUL 9: CONSTRUCTOR SUBCLASS DENGAN THROWS & VALIDASI THROW
+    public PrivateOffice(String namaRuangan, String kodeRuang, double hargaSewaPerJam, int jumlahMeja) throws Exception {
+        super(namaRuangan, kodeRuang, hargaSewaPerJam);
+        if (jumlahMeja <= 0) {
+            throw new Exception("Jumlah meja kerja harus lebih dari 0!");
+        }
         this.jumlahMeja = jumlahMeja;
     }
 

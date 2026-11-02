@@ -9,9 +9,12 @@ public class MeetingRoom extends RuangKerja implements DapatDisewa {
     // MODUL 4: Encapsulation
     private int kapasitasProyektor; 
 
-    // MODUL 5: KEYWORD SUPER pada Constructor
-    public MeetingRoom(String namaRuangan, String kodeRuang, double hargaSewaPerJam, int kapasitasProyektor) {
+    // MODUL 9: CONSTRUCTOR SUBCLASS DENGAN THROWS & VALIDASI THROW
+    public MeetingRoom(String namaRuangan, String kodeRuang, double hargaSewaPerJam, int kapasitasProyektor) throws Exception {
         super(namaRuangan, kodeRuang, hargaSewaPerJam);
+        if (kapasitasProyektor <= 0) {
+            throw new Exception("Kapasitas proyektor/orang harus lebih dari 0!");
+        }
         this.kapasitasProyektor = kapasitasProyektor;
     }
 

@@ -8,7 +8,8 @@ package com.mycompany.mavenproject1;
 public class EventSpace extends RuangKerja implements DapatDinilai {
     private boolean adaSoundSystem;
 
-    public EventSpace(String namaRuangan, String kodeRuang, double hargaSewaPerJam, boolean adaSoundSystem) {
+    // MODUL 9: CONSTRUCTOR SUBCLASS DENGAN THROWS EXCEPTION
+    public EventSpace(String namaRuangan, String kodeRuang, double hargaSewaPerJam, boolean adaSoundSystem) throws Exception {
         super(namaRuangan, kodeRuang, hargaSewaPerJam);
         this.adaSoundSystem = adaSoundSystem;
     }
