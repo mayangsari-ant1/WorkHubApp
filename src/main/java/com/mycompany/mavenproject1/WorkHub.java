@@ -4,27 +4,20 @@
  */
 package com.mycompany.mavenproject1;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class WorkHub {
     private String namaWorkHub;
-    
-    // KOMPOSISI: Objek internal yang hidup-matinya bergantung pada WorkHub
     private LoungeUtama loungeUtama;
-    
-    // AGREGASI: Menampung objek utama dan objek pendukung
     private ArrayList<RuangKerja> daftarRuangan;
     private HashMap<String, Penyewa> dataPenyewa;
 
-    // CONSTRUCTOR WORKHUB
     public WorkHub(String namaWorkHub) {
         this.namaWorkHub = namaWorkHub;
-        
-        // INSTANSIASI KOMPOSISI (Internal)
         this.loungeUtama = new LoungeUtama("Lounge Utama WorkHub", 50);
-        
-        // INISIALISASI WADAH AGREGASI
         this.daftarRuangan = new ArrayList<>();
         this.dataPenyewa = new HashMap<>();
     }
@@ -34,7 +27,63 @@ public class WorkHub {
         loungeUtama.bukaLounge();
     }
 
-    // METHOD AGREGASI: RUANG KERJA
+    public void simpanDataKeFile() {
+        try {
+            FileOutputStream fileKeluar = new FileOutputStream("data_workhub.dat");
+            ObjectOutputStream mesinPembeku = new ObjectOutputStream(fileKeluar);
+
+            mesinPembeku.writeObject(this.daftarRuangan);
+            mesinPembeku.writeObject(this.dataPenyewa);
+
+            mesinPembeku.close();
+            System.out.println("-> [SYSTEM LOG] Seluruh data berhasil disimpan (Serialization) ke file data_workhub.dat!");
+        } catch (Exception e) {
+            System.out.println("-> [SYSTEM ERROR] Gagal menyimpan data: " + e.getMessage());
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean muatDataDariFile() {
+        try {
+            File cekFile = new File("data_workhub.dat");
+            if (!cekFile.exists()) return false;
+
+            FileInputStream fileMasuk = new FileInputStream(cekFile);
+            ObjectInputStream mesinPembangkit = new ObjectInputStream(fileMasuk);
+
+            this.daftarRuangan = (ArrayList<RuangKerja>) mesinPembangkit.readObject();
+            this.dataPenyewa = (HashMap<String, Penyewa>) mesinPembangkit.readObject();
+
+            RuangKerja.totalRuanganDibuat = this.daftarRuangan.size();
+
+            mesinPembangkit.close();
+            System.out.println("-> [SYSTEM LOG] Data sistem berhasil dimuat ulang (Deserialization) dari penyimpanan!");
+            return true;
+        } catch (Exception e) {
+            System.out.println("-> [SYSTEM ERROR] Gagal memuat data: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public void bacaLogTransaksi() {
+        System.out.println("\n--- Riwayat Log Transaksi WorkHub ---");
+        try {
+            File fileLog = new File("log_transaksi.txt");
+            if (!fileLog.exists()) {
+                System.out.println("Belum ada catatan log transaksi.");
+                return;
+            }
+            Scanner mesinBaca = new Scanner(fileLog);
+            while (mesinBaca.hasNextLine()) {
+                System.out.println(mesinBaca.nextLine());
+            }
+            mesinBaca.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Gagal membuka file log: " + e.getMessage());
+        }
+    }
+
+    // METHOD AGREGASI
     public void tambahRuangan(RuangKerja r) {
         daftarRuangan.add(r);
         System.out.println("Sukses! Ruangan berhasil ditambahkan. (Total Ruangan: " + daftarRuangan.size() + ")");
@@ -65,7 +114,6 @@ public class WorkHub {
         }
     }
 
-    // METHOD AGREGASI: PENYEWA
     public void tambahPenyewa(Penyewa p) {
         dataPenyewa.put(p.getIdPenyewa(), p);
         System.out.println("Berhasil menambahkan penyewa!");
@@ -86,7 +134,6 @@ public class WorkHub {
         }
     }
 
-    // GETTER BANTUAN UNTUK ASOSIASI DAN CLI
     public Penyewa getPenyewa(String id) { return dataPenyewa.get(id); }
     public RuangKerja getRuanganInt(int index) { return daftarRuangan.get(index); }
     public int getJumlahRuangan() { return daftarRuangan.size(); }

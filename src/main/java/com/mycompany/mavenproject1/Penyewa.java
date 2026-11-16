@@ -4,7 +4,10 @@
  */
 package com.mycompany.mavenproject1;
 
-public class Penyewa {
+import java.io.Serializable;
+
+public class Penyewa implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String idPenyewa;
     private String nama;
 
